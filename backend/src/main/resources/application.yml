@@ -1,0 +1,17 @@
+server:
+  port: 8080
+app:
+  mode: demo  # demo or lan
+  master:
+    ip: localhost
+    rmi-port: 1099
+    node-id: 100
+  straggler-threshold: 0.6
+  max-staleness: 10
+  heartbeat-interval: 3000
+  replication-interval: 5000
+
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false

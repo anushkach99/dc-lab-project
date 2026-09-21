@@ -21,12 +21,12 @@ public class JobController {
         this.taskScheduler = taskScheduler;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Job> getAllJobs() {
         return taskScheduler.getAllJobs();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Job> createJob(@RequestBody CreateJobRequest request) {
         TaskComplexity complexity;
         try {

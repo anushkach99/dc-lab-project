@@ -21,7 +21,12 @@ public class RmiServer {
     @PostConstruct
     public void start() {
         try {
-            Registry registry = LocateRegistry.createRegistry(appConfig.getRmiPort());
+            Registry registry;
+            try {
+                registry = LocateRegistry.createRegistry(appConfig.getRmiPort());
+            } catch (Exception e) {
+                registry = LocateRegistry.getRegistry(appConfig.getRmiPort());
+            }
             registry.rebind("SchedulerService", schedulerServiceImpl);
             System.out.println("RMI Server started on port " + appConfig.getRmiPort());
         } catch (Exception e) {

@@ -24,12 +24,12 @@ export default function ExperimentLab() {
   };
 
   const expData = [
-    { id: 1, title: 'Exp 1 - Java RMI Communication', desc: 'Workers register with the master scheduler via Java RMI. The master maintains a distributed worker registry.', status: \`\${data.workers.length} Registered\`, link: '/workers' },
-    { id: 2, title: 'Exp 2 - Multithreaded Distributed Execution', desc: 'The master distributes tasks to workers concurrently using thread pools. Workers execute tasks in parallel.', status: \`Active Threads\`, link: '/jobs' },
-    { id: 3, title: 'Exp 3 - Lamport Logical Clock', desc: 'Each node maintains a Lamport clock. Events are timestamped and ordered to establish causality across the distributed system.', status: \`\${data.events.length} Events\`, link: '/clock' },
-    { id: 4, title: 'Exp 4 - Bully + Ring Election', desc: 'Leader election ensures the system survives coordinator failure. Both Bully and Ring algorithms are implemented.', status: \`Leader: \${data.system.coordinator || 'None'}\`, link: '/election' },
-    { id: 5, title: 'Exp 5 - Replication & Consistency', desc: 'Scheduler state is replicated from primary to backup with bounded-staleness guarantees.', status: \`Sync Status\`, link: '/replication' },
-    { id: 6, title: 'Exp 6 - Dynamic Load Balancing', desc: 'Heterogeneity-aware scheduling distributes work by worker capability. Stragglers are detected and work is dynamically redistributed.', status: \`\${data.loadBalancing.redistributionCount || 0} Redistributed\`, link: '/load-balancing' },
+    { id: 1, title: 'Exp 1 - Java RMI Communication', desc: 'Workers register with the master scheduler via Java RMI. The master maintains a distributed worker registry.', status: `${data.workers.length} Registered`, link: '/workers' },
+    { id: 2, title: 'Exp 2 - Multithreaded Distributed Execution', desc: 'The master distributes tasks to workers concurrently using thread pools. Workers execute tasks in parallel.', status: `Active Threads`, link: '/jobs' },
+    { id: 3, title: 'Exp 3 - Lamport Logical Clock', desc: 'Each node maintains a Lamport clock. Events are timestamped and ordered to establish causality across the distributed system.', status: `${data.events.length} Events`, link: '/clock' },
+    { id: 4, title: 'Exp 4 - Bully + Ring Election', desc: 'Leader election ensures the system survives coordinator failure. Both Bully and Ring algorithms are implemented.', status: `Leader: ${data.system.coordinator || 'None'}`, link: '/election' },
+    { id: 5, title: 'Exp 5 - Replication & Consistency', desc: 'Scheduler state is replicated from primary to backup with bounded-staleness guarantees.', status: `Sync Status`, link: '/replication' },
+    { id: 6, title: 'Exp 6 - Dynamic Load Balancing', desc: 'Heterogeneity-aware scheduling distributes work by worker capability. Stragglers are detected and work is dynamically redistributed.', status: `${data.loadBalancing.redistributionCount || 0} Redistributed`, link: '/load-balancing' },
   ];
 
   return (

@@ -53,7 +53,7 @@ export default function ClockTimeline() {
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <XAxis type="number" dataKey="x" name="Lamport TS" />
               <YAxis type="number" dataKey="y" name="Node" tickFormatter={tick => nodes[tick] || ''} tickCount={nodes.length} />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} formatter={(val, name, props) => [props.payload.desc, \`TS: \${props.payload.x}\`]} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} formatter={(val, name, props) => [props.payload.desc, `TS: ${props.payload.x}`]} />
               <Scatter name="Events" data={chartData} fill="var(--accent)" />
             </ScatterChart>
           </ResponsiveContainer>

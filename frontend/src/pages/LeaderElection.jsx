@@ -44,15 +44,15 @@ export default function LeaderElection() {
         <div className="card">
           <h3 style={{ marginBottom: '15px' }}>Algorithm Selection</h3>
           <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-            <button className={\`btn \${algo === 'BULLY' ? 'btn-primary' : ''}\`} style={{ flex: 1, backgroundColor: algo !== 'BULLY' ? 'var(--border)' : '', color: algo !== 'BULLY' ? 'var(--text-primary)' : '' }} onClick={() => setAlgo('BULLY')}>BULLY</button>
-            <button className={\`btn \${algo === 'RING' ? 'btn-primary' : ''}\`} style={{ flex: 1, backgroundColor: algo !== 'RING' ? 'var(--border)' : '', color: algo !== 'RING' ? 'var(--text-primary)' : '' }} onClick={() => setAlgo('RING')}>RING</button>
+            <button className={`btn ${algo === 'BULLY' ? 'btn-primary' : ''}`} style={{ flex: 1, backgroundColor: algo !== 'BULLY' ? 'var(--border)' : '', color: algo !== 'BULLY' ? 'var(--text-primary)' : '' }} onClick={() => setAlgo('BULLY')}>BULLY</button>
+            <button className={`btn ${algo === 'RING' ? 'btn-primary' : ''}`} style={{ flex: 1, backgroundColor: algo !== 'RING' ? 'var(--border)' : '', color: algo !== 'RING' ? 'var(--text-primary)' : '' }} onClick={() => setAlgo('RING')}>RING</button>
           </div>
           <div style={{ display: 'flex', gap: '10px' }}>
             <button className="btn btn-success" style={{ flex: 1 }} onClick={handleStart}>Start Election</button>
             <button className="btn btn-danger" style={{ flex: 1 }} onClick={handleFailMaster}>Simulate Master Failure</button>
           </div>
         </div>
-        <StatCard title="Current Coordinator" value={data.status.coordinatorId || 'UNKNOWN'} color="#9c27b0" subtitle={\`Status: \${data.status.state || 'IDLE'}\`} />
+        <StatCard title="Current Coordinator" value={data.status.coordinatorId || 'UNKNOWN'} color="#9c27b0" subtitle={`Status: ${data.status.state || 'IDLE'}`} />
       </div>
 
       <div className="card" style={{ marginBottom: '20px' }}>

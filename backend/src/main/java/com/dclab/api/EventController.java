@@ -19,7 +19,7 @@ public class EventController {
         this.eventLogger = eventLogger;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<LamportEvent> getEvents() {
         return eventLogger.getEvents();
     }

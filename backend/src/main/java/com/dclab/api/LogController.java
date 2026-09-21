@@ -18,7 +18,7 @@ public class LogController {
         this.logService = logService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<String> getLogs() {
         return logService.getLogs();
     }

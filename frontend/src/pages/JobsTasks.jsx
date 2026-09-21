@@ -122,7 +122,7 @@ export default function JobsTasks() {
                     <td>{j.runningTasks}</td>
                     <td><StatusBadge status={j.status} /></td>
                     <td style={{ width: '150px' }}>
-                      <div className="progress-bar-bg"><div className="progress-bar-fill" style={{ width: \`\${prog}%\` }}></div></div>
+                      <div className="progress-bar-bg"><div className="progress-bar-fill" style={{ width: `${prog}%` }}></div></div>
                     </td>
                     <td>
                       {j.status === 'CREATED' && <button className="btn btn-success" style={{ padding: '4px 8px', fontSize: '0.8rem' }} onClick={() => handleStart(j.id)}>Start</button>}

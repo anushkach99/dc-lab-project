@@ -19,7 +19,7 @@ public class TaskController {
         this.taskScheduler = taskScheduler;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Task> getAllTasks() {
         return taskScheduler.getAllTasks();
     }

@@ -56,7 +56,7 @@ export default function SystemLogs() {
           {categories.map(c => (
             <button 
               key={c}
-              className={\`btn \${filter === c ? 'btn-primary' : ''}\`}
+              className={`btn ${filter === c ? 'btn-primary' : ''}`}
               style={{ padding: '4px 10px', fontSize: '0.8rem', backgroundColor: filter !== c ? 'var(--border)' : '', color: filter !== c ? 'var(--text-primary)' : '' }}
               onClick={() => setFilter(c)}
             >

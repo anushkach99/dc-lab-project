@@ -20,7 +20,7 @@ public class WorkerController {
         this.workerRegistry = workerRegistry;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<WorkerInfo> getAllWorkers() {
         return workerRegistry.getAllWorkers();
     }

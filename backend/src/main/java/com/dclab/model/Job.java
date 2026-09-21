@@ -33,6 +33,7 @@ public class Job implements Serializable {
     }
 
     public String getJobId() { return jobId; }
+    public String getId() { return jobId; }
     public void setJobId(String jobId) { this.jobId = jobId; }
     public int getTotalTasks() { return totalTasks; }
     public void setTotalTasks(int totalTasks) { this.totalTasks = totalTasks; }

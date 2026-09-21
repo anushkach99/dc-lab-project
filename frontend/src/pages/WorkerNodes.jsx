@@ -64,7 +64,7 @@ export default function WorkerNodes() {
                 <span>{w.metrics?.cpuUsage || 0}%</span>
               </div>
               <div className="progress-bar-bg" style={{ marginBottom: '15px' }}>
-                <div className="progress-bar-fill" style={{ width: \`\${w.metrics?.cpuUsage || 0}%\` }}></div>
+                <div className="progress-bar-fill" style={{ width: `${w.metrics?.cpuUsage || 0}%` }}></div>
               </div>
 
               <div style={{ marginBottom: '5px', fontSize: '0.85rem', display: 'flex', justifyContent: 'space-between' }}>
@@ -72,7 +72,7 @@ export default function WorkerNodes() {
                 <span>{w.metrics?.completedTasks || 0} / {w.metrics?.pendingTasks || 0}</span>
               </div>
               <div className="progress-bar-bg" style={{ marginBottom: '15px' }}>
-                <div className="progress-bar-fill" style={{ width: \`\${prog}%\`, backgroundColor: 'var(--success)' }}></div>
+                <div className="progress-bar-fill" style={{ width: `${prog}%`, backgroundColor: 'var(--success)' }}></div>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>

@@ -14,5 +14,5 @@ export default function StatusBadge({ status }) {
 
   const className = map[status] || 'badge-idle';
 
-  return <span className={\`badge \${className}\`}>{status}</span>;
+  return <span className={`badge ${className}`}>{status}</span>;
 }

@@ -17,6 +17,10 @@ public class SystemLogService {
         logs.add(logEntry);
     }
 
+    public void addLog(String category, String message) {
+        log(category, message);
+    }
+
     public List<String> getLogs() {
         return logs;
     }

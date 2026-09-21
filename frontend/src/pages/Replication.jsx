@@ -79,7 +79,7 @@ export default function Replication() {
               <span>{staleness} / {maxStaleness} updates</span>
             </div>
             <div className="progress-bar-bg" style={{ height: '12px' }}>
-              <div className="progress-bar-fill" style={{ width: \`\${stalenessPct}%\`, backgroundColor: stalenessColor }}></div>
+              <div className="progress-bar-fill" style={{ width: `${stalenessPct}%`, backgroundColor: stalenessColor }}></div>
             </div>
           </div>
           <div style={{ display: 'flex', gap: '15px', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
@@ -88,7 +88,7 @@ export default function Replication() {
               <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Pending Updates</div>
             </div>
             <button className="btn btn-primary" onClick={handleSync}>Force Sync</button>
-            <button className={\`btn \${delayEnabled ? 'btn-danger' : 'btn-warning'}\`} onClick={handleToggleDelay}>
+            <button className={`btn ${delayEnabled ? 'btn-danger' : 'btn-warning'}`} onClick={handleToggleDelay}>
               {delayEnabled ? 'Disable Delay' : 'Simulate Delay'}
             </button>
           </div>

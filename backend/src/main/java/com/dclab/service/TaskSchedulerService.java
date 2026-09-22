@@ -57,15 +57,30 @@ public class TaskSchedulerService {
         Job job = jobs.get(jobId);
         if (job != null) {
             job.setStatus("RUNNING");
+            job.setStartTime(System.currentTimeMillis());
+            List<Task> jobTasks = getTasksByJob(jobId);
+            loadBalancer.distributeTasksInitially(jobTasks);
             loadBalancer.startMonitoring(jobId);
         }
     }
 
     public Task getNextTask(String workerId) {
+        // First check for tasks pre-assigned to this worker
         for (Task t : pendingQueue) {
             if (t.getAssignedWorker() != null && t.getAssignedWorker().equals(workerId) && t.getStatus() == TaskStatus.ASSIGNED) {
                 pendingQueue.remove(t);
                 t.setStatus(TaskStatus.RUNNING);
+                t.setStartTime(System.currentTimeMillis());
+                return t;
+            }
+        }
+        // Fallback: assign an unassigned pending task if available
+        for (Task t : pendingQueue) {
+            if (t.getAssignedWorker() == null && t.getStatus() == TaskStatus.PENDING) {
+                pendingQueue.remove(t);
+                t.setAssignedWorker(workerId);
+                t.setStatus(TaskStatus.RUNNING);
+                t.setStartTime(System.currentTimeMillis());
                 return t;
             }
         }
@@ -76,16 +91,20 @@ public class TaskSchedulerService {
         Task task = tasks.get(result.getTaskId());
         if (task != null) {
             task.setStatus(TaskStatus.COMPLETED);
+            task.setEndTime(System.currentTimeMillis());
+            task.setExecutionTimeMs(result.getExecutionTimeMs());
             Job job = jobs.get(task.getJobId());
             if (job != null) {
                 job.setCompletedTasks(job.getCompletedTasks() + 1);
-                job.setRunningTasks(job.getRunningTasks() - 1);
-                if (job.getCompletedTasks() == job.getTotalTasks()) {
+                job.setRunningTasks(Math.max(0, job.getRunningTasks() - 1));
+                job.setPendingTasks(Math.max(0, job.getPendingTasks() - 1));
+                if (job.getCompletedTasks() >= job.getTotalTasks()) {
                     job.setStatus("COMPLETED");
+                    job.setEndTime(System.currentTimeMillis());
                 }
             }
             lamportClock.update(result.getLamportTimestamp());
-            eventLogger.logEvent(result.getWorkerId(), "TASK_COMPLETED", lamportClock.getTime(), task.getTaskId(), "Completed task");
+            eventLogger.logEvent(result.getWorkerId(), "TASK_COMPLETED", lamportClock.getTime(), task.getTaskId(), "Completed task in " + result.getExecutionTimeMs() + "ms");
             replicationManager.updatePrimaryState(new SchedulerState());
         }
     }
@@ -102,6 +121,9 @@ public class TaskSchedulerService {
         if (task != null) {
             task.setAssignedWorker(newWorkerId);
             task.setStatus(TaskStatus.ASSIGNED);
+            if (!pendingQueue.contains(task)) {
+                pendingQueue.add(task);
+            }
         }
     }
 

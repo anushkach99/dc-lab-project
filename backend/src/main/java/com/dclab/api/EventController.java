@@ -25,7 +25,7 @@ public class EventController {
     }
 
     @GetMapping("/since/{timestamp}")
-    public List<LamportEvent> getEventsSince(@PathVariable long timestamp) {
+    public List<LamportEvent> getEventsSince(@PathVariable("timestamp") long timestamp) {
         return eventLogger.getEventsSince(timestamp);
     }
 }

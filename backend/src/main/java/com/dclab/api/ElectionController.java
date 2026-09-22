@@ -28,8 +28,10 @@ public class ElectionController {
     public Map<String, Object> getStatus() {
         Map<String, Object> status = new HashMap<>();
         status.put("coordinator", electionService.getCurrentCoordinator());
+        status.put("coordinatorId", electionService.getCurrentCoordinator());
         status.put("coordinatorNodeId", electionService.getCoordinatorNodeId());
         status.put("electionLog", electionService.getElectionLog());
+        status.put("events", electionService.getElectionLog());
         status.put("workers", workerRegistry.getAllWorkers());
         return status;
     }

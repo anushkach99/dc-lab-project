@@ -39,7 +39,7 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Job> getJob(@PathVariable String id) {
+    public ResponseEntity<Job> getJob(@PathVariable("id") String id) {
         Job job = taskScheduler.getJob(id);
         if (job != null) {
             return ResponseEntity.ok(job);
@@ -49,7 +49,7 @@ public class JobController {
     }
 
     @PostMapping("/{id}/start")
-    public ResponseEntity<String> startJob(@PathVariable String id) {
+    public ResponseEntity<String> startJob(@PathVariable("id") String id) {
         taskScheduler.startJob(id);
         return ResponseEntity.ok("Job started successfully");
     }

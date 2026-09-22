@@ -31,4 +31,29 @@ public class ReplicationState {
     public void setSyncStatus(String syncStatus) { this.syncStatus = syncStatus; }
     public int getPendingUpdates() { return pendingUpdates; }
     public void setPendingUpdates(int pendingUpdates) { this.pendingUpdates = pendingUpdates; }
+
+    // Frontend compatibility getters
+    public java.util.Map<String, Object> getPrimary() {
+        java.util.Map<String, Object> map = new java.util.HashMap<>();
+        map.put("version", primaryVersion);
+        map.put("status", "ONLINE");
+        map.put("lastUpdate", lastReplicationTime);
+        return map;
+    }
+
+    public java.util.Map<String, Object> getBackup() {
+        java.util.Map<String, Object> map = new java.util.HashMap<>();
+        map.put("version", backupVersion);
+        map.put("status", syncStatus != null ? syncStatus : "ONLINE");
+        map.put("lastSync", lastReplicationTime);
+        return map;
+    }
+
+    public long getStaleness() {
+        return Math.max(0, primaryVersion - backupVersion);
+    }
+
+    public long getMaxStaleness() {
+        return 10;
+    }
 }

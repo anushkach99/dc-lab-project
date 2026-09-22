@@ -86,22 +86,32 @@ public class DemoModeManager {
                 sw.setSpeed(0.1);
                 sw.getInfo().setSimulatedSpeed(0.1);
                 sw.getInfo().setStatus(NodeStatus.STRAGGLER);
-                logService.addLog("DEMO", "Simulated STRAGGLER: Reduced " + workerId + " execution speed to 0.1 tasks/sec");
-                eventLogger.logEvent(workerId, "SIMULATE_STRAGGLER", clock.increment(), null, "Speed reduced artificially");
             }
         }
+        WorkerInfo regWorker = workerRegistry.getWorker(workerId);
+        if (regWorker != null) {
+            regWorker.setSimulatedSpeed(0.1);
+            regWorker.setStatus(NodeStatus.STRAGGLER);
+        }
+        logService.addLog("DEMO", "Simulated STRAGGLER: Reduced " + workerId + " execution speed to 0.1 tasks/sec");
+        eventLogger.logEvent(workerId, "SIMULATE_STRAGGLER", clock.increment(), null, "Speed reduced artificially");
     }
 
     public void restoreWorker(String workerId) {
+        double speed = workerId.contains("Cloud") ? 5.0 : 2.0;
         for (SimulatedWorker sw : simulatedWorkers) {
             if (sw.getInfo().getWorkerId().equals(workerId)) {
-                double speed = workerId.contains("Cloud") ? 5.0 : 2.0;
                 sw.setSpeed(speed);
                 sw.getInfo().setSimulatedSpeed(speed);
                 sw.getInfo().setStatus(NodeStatus.ONLINE);
-                logService.addLog("DEMO", "Restored worker " + workerId + " speed to " + speed + " tasks/sec");
             }
         }
+        WorkerInfo regWorker = workerRegistry.getWorker(workerId);
+        if (regWorker != null) {
+            regWorker.setSimulatedSpeed(speed);
+            regWorker.setStatus(NodeStatus.ONLINE);
+        }
+        logService.addLog("DEMO", "Restored worker " + workerId + " speed to " + speed + " tasks/sec");
     }
 
     public void runFullExperiment() {

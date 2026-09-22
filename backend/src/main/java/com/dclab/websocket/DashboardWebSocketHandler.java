@@ -123,9 +123,9 @@ public class DashboardWebSocketHandler {
         }
 
         // Broadcast logs (last 100)
-        List<String> allLogs = logService.getLogs();
+        List<com.dclab.model.LogEntry> allLogs = logService.getLogs();
         if (allLogs != null) {
-            List<String> last100Logs = allLogs.stream()
+            List<com.dclab.model.LogEntry> last100Logs = allLogs.stream()
                     .skip(Math.max(0, allLogs.size() - 100))
                     .collect(Collectors.toList());
             messagingTemplate.convertAndSend("/topic/logs", last100Logs);

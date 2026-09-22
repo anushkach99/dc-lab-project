@@ -43,4 +43,8 @@ public class SystemStatus {
     public void setUptime(long uptime) { this.uptime = uptime; }
     public ReplicationState getReplicationState() { return replicationState; }
     public void setReplicationState(ReplicationState replicationState) { this.replicationState = replicationState; }
+
+    // Frontend compatibility getters
+    public String getStatus() { return "ONLINE"; }
+    public String getCoordinator() { return coordinatorId; }
 }

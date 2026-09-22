@@ -1,5 +1,6 @@
 package com.dclab.api;
 
+import com.dclab.model.LogEntry;
 import com.dclab.service.SystemLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +20,12 @@ public class LogController {
     }
 
     @GetMapping("")
-    public List<String> getLogs() {
+    public List<LogEntry> getLogs() {
         return logService.getLogs();
     }
 
     @GetMapping("/since/{fromIndex}")
-    public List<String> getLogsSince(@PathVariable int fromIndex) {
+    public List<LogEntry> getLogsSince(@PathVariable("fromIndex") int fromIndex) {
         return logService.getLogsSince(fromIndex);
     }
 }

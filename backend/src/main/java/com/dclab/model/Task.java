@@ -53,4 +53,9 @@ public class Task implements Serializable {
     public void setComputationSize(int computationSize) { this.computationSize = computationSize; }
     public double getProgress() { return progress; }
     public void setProgress(double progress) { this.progress = progress; }
+
+    // Frontend compatibility getters
+    public String getId() { return taskId; }
+    public String getWorkerId() { return assignedWorker; }
+    public long getExecutionTime() { return executionTimeMs; }
 }

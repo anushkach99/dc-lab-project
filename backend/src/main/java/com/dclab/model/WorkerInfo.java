@@ -81,4 +81,27 @@ public class WorkerInfo implements Serializable {
     public void setLastHeartbeat(long lastHeartbeat) { this.lastHeartbeat = lastHeartbeat; }
     public double getSimulatedSpeed() { return simulatedSpeed; }
     public void setSimulatedSpeed(double simulatedSpeed) { this.simulatedSpeed = simulatedSpeed; }
+
+    // Frontend compatibility getters
+    public String getId() { return workerId; }
+    public String getType() { return nodeType != null ? nodeType.name() : "NODE"; }
+    public double getCpuUsage() { return cpuUtilization; }
+
+    public java.util.Map<String, Object> getSpecs() {
+        java.util.Map<String, Object> specs = new java.util.HashMap<>();
+        specs.put("cores", cpuCores);
+        specs.put("ram", Math.max(1, ramMB / 1024));
+        specs.put("speed", cpuFrequencyGHz > 0 ? cpuFrequencyGHz : 2.4);
+        return specs;
+    }
+
+    public java.util.Map<String, Object> getMetrics() {
+        java.util.Map<String, Object> metrics = new java.util.HashMap<>();
+        metrics.put("cpuUsage", cpuUtilization);
+        metrics.put("completedTasks", completedTasks);
+        metrics.put("pendingTasks", pendingTasks);
+        metrics.put("throughput", Math.round(throughput * 100.0) / 100.0);
+        metrics.put("avgTaskTime", Math.round(avgTaskTime * 10.0) / 10.0);
+        return metrics;
+    }
 }

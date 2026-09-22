@@ -33,4 +33,7 @@ public class LamportEvent implements Serializable {
     public void setTaskId(String taskId) { this.taskId = taskId; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    // Frontend alias
+    public long getTimestamp() { return realTimestamp; }
 }

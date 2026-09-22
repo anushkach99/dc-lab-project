@@ -25,7 +25,7 @@ public class TaskController {
     }
 
     @GetMapping("/job/{jobId}")
-    public List<Task> getTasksByJob(@PathVariable String jobId) {
+    public List<Task> getTasksByJob(@PathVariable("jobId") String jobId) {
         return taskScheduler.getTasksByJob(jobId);
     }
 }

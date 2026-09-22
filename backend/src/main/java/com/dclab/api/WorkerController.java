@@ -26,7 +26,7 @@ public class WorkerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WorkerInfo> getWorker(@PathVariable String id) {
+    public ResponseEntity<WorkerInfo> getWorker(@PathVariable("id") String id) {
         WorkerInfo worker = workerRegistry.getWorker(id);
         if (worker != null) {
             return ResponseEntity.ok(worker);
